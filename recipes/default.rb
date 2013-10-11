@@ -20,7 +20,7 @@ template "/etc/redis/redis.conf" do
   source "redis.conf.erb"
 end
 
-# use custom redis configuration file.
+# add an init script to control redis
 template "/etc/init.d/redis-server" do
   owner "root"
   group "root"
