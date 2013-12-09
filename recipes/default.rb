@@ -18,6 +18,7 @@ template "/etc/redis/redis.conf" do
   group "root"
   mode "0644"
   source "redis.conf.erb"
+  notifies :run, "execute[restart-redis]", :immediately
 end
 
 # add an init script to control redis
@@ -26,10 +27,14 @@ template "/etc/init.d/redis-server" do
   group "root"
   mode "0755"
   source "redis-server.erb"
+  notifies :run, "execute[restart-redis]", :immediately
 end
 
 execute "chown redis:redis /etc/redis"
 
-# restart redis since we might have changed
-# config.
-execute "/etc/init.d/redis-server restart"
+execute "restart-redis" do
+  # restart redis since we might have changed
+  # config.
+  command "/etc/init.d/redis-server restart"
+  action :nothing
+end
