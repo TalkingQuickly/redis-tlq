@@ -1,10 +1,12 @@
 # use redis from ppa rather than the one 
 # available in the package manager. rwky
 # builds the stable version and is kept
-# consistently up to date
+# consistently up to date. We need python-software-properties
+# for add-apt-repository to work
 bash 'adding stable redis ppa' do
   user 'root'
   code <<-EOC
+    apt-get install python-software-properties
     add-apt-repository ppa:rwky/redis
     apt-get update
   EOC
