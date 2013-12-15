@@ -3,10 +3,12 @@
 # builds the stable version and is kept
 # consistently up to date. We need python-software-properties
 # for add-apt-repository to work
+
+package 'python-software-properties'
+
 bash 'adding stable redis ppa' do
   user 'root'
   code <<-EOC
-    apt-get install python-software-properties
     add-apt-repository ppa:rwky/redis
     apt-get update
   EOC
