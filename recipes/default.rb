@@ -9,7 +9,7 @@ package 'python-software-properties'
 bash 'adding stable redis ppa' do
   user 'root'
   code <<-EOC
-    add-apt-repository ppa:rwky/redis
+    add-apt-repository ppa:chris-lea/redis-server
     apt-get update
   EOC
 end
